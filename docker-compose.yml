@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  api:
+    container_name: api-container
+    build:
+      context: ./backend
+    environment:
+       - CONNECTION_STRING=postgres://walaa-hamed:walaa-hamed@db/demo_db
+    depends_on:
+      - db
+    networks:
+      - network-backend
+      - network-frontend
+
+  web:
+    container_name: web-container
+
+    build:
+      context: ./frontend
+    environment:
+      - API_URL=http://api:3001/data
+    depends_on:
+      - api
+    ports:
+      - "80:3000"
+    networks:
+      - network-frontend
+
+  db:
+    container_name: postgressql-container
+    image: postgres:11.2-alpine
+    environment:
+      POSTGRES_USER: walaa-hamed
+      POSTGRES_PASSWORD: walaa-hamed
+      POSTGRES_DB: demo_db
+    volumes:
+      - ./sql_scripts/:/docker-entrypoint-initdb.d
+      - postgres_mysql:/var/lib/postgresql
+      - postgres_mysql_config:/etc/postgresql
+    networks:
+      - network-backend
+
+networks:
+  network-backend:
+    name: network-backend
+    driver: bridge
+  network-frontend:
+    name: network-frontend
+    driver: bridge
+
+volumes:
+  postgres_mysql:
+  postgres_mysql_config:
+
