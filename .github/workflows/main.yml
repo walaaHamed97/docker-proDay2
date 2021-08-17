@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI for docker docker-proDay2
+name: CI for docker docker-proday2
 
 # Controls when the workflow will run
 on:
@@ -54,7 +54,7 @@ jobs:
           file: ./backend/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/docker-proDay2:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/docker-proday2:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
