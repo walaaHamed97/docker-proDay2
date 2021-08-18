@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI for docker flask
+name: CI for docker hello_flask_sql
 
 # Controls when the workflow will run
 on:
@@ -56,7 +56,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/docker-proday2:latest
+          tags: ghcr.io/${{ github.repository_owner }}/docker-flasksql:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
