@@ -55,8 +55,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          run: OWNER="$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')"
-          tags: ghcr.io/${{OWNER}}/docker-project1:latest
+          tag: ghcr.io/${{ github.repository_owner }}/docker-project1:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
