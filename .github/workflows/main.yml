@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI for docker hello_flask_sql
+name: CI for docker  hello_flask_sql
 
 # Controls when the workflow will run
 on:
@@ -31,7 +31,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, flasksql!
+        run: echo Hello, docker-project!
 
       # Building
       - name: Set up Docker Buildx
@@ -51,10 +51,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./
-          file: ./Dockerfile
+          file: ./backend/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/docker-flasksql:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/docker-project1:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
